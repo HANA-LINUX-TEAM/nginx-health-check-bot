@@ -1,0 +1,1 @@
+# nginx-health-check-bot

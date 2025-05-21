@@ -1,0 +1,22 @@
+name: Crawl index.html and notify Teams
+
+on:
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
+
+    - name: Run crawler script
+      env:
+        WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK }}
+        SERVER_IP: ${{ secrets.SERVER_IP }}
+      run: python crawl.py

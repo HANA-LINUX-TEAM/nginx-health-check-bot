@@ -21,7 +21,7 @@ except Exception as e:
     print("에러 발생:", h1_text)
 
 payload = {
-    "text": f"**🌐 nginx index.html의 <h1> 내용**\n\n- 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n```html\n{h1_text}\n```"
+    "text": f"**🌐 nginx index.html의 내용**\n\n- 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n```html\n{h1_text}\n```"
 }
 
 resp = requests.post(os.environ["WEBHOOK_URL"], json=payload)

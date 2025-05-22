@@ -13,7 +13,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests beautifulsoup4
+        pip install requests beautifulsoup4 pytz
 
     - name: Run crawler script
       env:

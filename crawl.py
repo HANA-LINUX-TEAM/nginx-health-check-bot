@@ -2,6 +2,11 @@ import os
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
+import pytz  
+
+kst = pytz.timezone("Asia/Seoul")  
+kst_now = datetime.now(kst)   
+
 try:
     res = requests.get(f"http://{os.environ['SERVER_IP']}/index.html", timeout=5)
     res.raise_for_status()
@@ -21,7 +26,7 @@ except Exception as e:
     print("에러 발생:", h1_text)
 
 payload = {
-    "text": f"**🌐 nginx index.html의 내용**\n\n- 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n```html\n{h1_text}\n```"
+    "text": f"**🌐 nginx index.html의 내용**\n\n- 시간: {kst_now.strftime('%Y-%m-%d %H:%M:%S')}\n\n```html\n{h1_text}\n```"
 }
 
 resp = requests.post(os.environ["WEBHOOK_URL"], json=payload)
